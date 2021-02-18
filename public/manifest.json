@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Micro Expense Tracker",
+  "name": "Created with React amd Material UI",
   "icons": [
     {
       "src": "favicon.ico",
