@@ -77,6 +77,8 @@ const AddTopic = () => {
                     })}
                     <ListItem>
                         <TextField
+                            style={{marginRight: 10}}
+                            fullWidth
                             label={'Add Topic'}
                             onChange={handleTopicTitle}
                             value={topicTitle}
