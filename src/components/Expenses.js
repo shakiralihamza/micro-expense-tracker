@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from "@material-ui/core/Typography";
-import {Container, Fade} from "@material-ui/core";
+import {Container} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import AddExpense from "./AddExpense";
@@ -29,19 +29,16 @@ const useStyles = makeStyles(() => ({
 const Expenses = () => {
     const classes = useStyles();
 
-    // const [expenses, setExpenses] = React.useState([]);
-
-
     return (
-            <Container maxWidth={"sm"}>
-                <AddExpense/>
-                <Typography variant={'h4'} style={{paddingTop: 80}}>
-                    Expenses
-                </Typography>
-                <List className={classes.root2}>
-                    <ExpensesList/>
-                </List>
-            </Container>
+        <Container maxWidth={"sm"}>
+            <AddExpense/>
+            <Typography variant={'h4'} style={{paddingTop: 80}}>
+                Expenses
+            </Typography>
+            <List className={classes.root2}>
+                <ExpensesList/>
+            </List>
+        </Container>
     );
 };
 

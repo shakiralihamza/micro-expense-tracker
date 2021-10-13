@@ -37,7 +37,6 @@ const AddExpense = () => {
             title: expenseTitle,
             amount: Number(expenseAmount)
         }
-        // state.setExpenses([...state.expenses, newExpense])
         addExpense(newExpense);
         setExpenseAmount('');
         setExpenseTitle('')
