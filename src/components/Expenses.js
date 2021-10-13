@@ -1,22 +1,13 @@
 import React from 'react';
 import Typography from "@material-ui/core/Typography";
-import {Container, Fade, ListItemIcon, ListItemSecondaryAction, Menu, MenuItem, withStyles} from "@material-ui/core";
+import {Container, Fade} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import MeetingsMenu from "./MeetingsMenu";
-import AddMeetings from "./AddMeetings";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import MeetingsMenuContext from "../context/MeetingsMenuContext";
 import MenuContext from "../context/MenuContext";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
 import ExpensesList from "./ExpensesList";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     root2: {
         width: '100%',
         // maxWidth: '36ch',
-        backgroundColor: theme.palette.background.paper,
+        // backgroundColor: theme.palette.background.paper,
         paddingBottom: '80px',
         margin:'auto'
     }
@@ -109,11 +100,10 @@ const Expenses = () => {
     return (
         <MeetingsMenuContext.Provider value={MeetingMenuContextValues}>
             <Fade in={currentMenu} timeout={300}>
-                <Container>
+                <Container maxWidth={"sm"}>
                     <MeetingsMenu/>
-                    <Typography variant={'h4'} style={{paddingTop: 50}}>
+                    <Typography variant={'h4'} style={{paddingTop: 80}}>
                         Expenses
-                        <AddMeetings/>
                     </Typography>
                     <Fade in={!value} timeout={300}>
                         <TabPanel value={value} index={0}>

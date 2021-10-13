@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import {ListItemSecondaryAction} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Divider from "@material-ui/core/Divider";
 import MeetingsMenuContext from "../context/MeetingsMenuContext";
 
 
