@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import {Container, Fade} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ExpensesMenu from "./ExpensesMenu";
+import AddExpense from "./AddExpense";
 
 import ExpensesList from "./ExpensesList";
 
@@ -34,7 +34,7 @@ const Expenses = () => {
 
     return (
             <Container maxWidth={"sm"}>
-                <ExpensesMenu/>
+                <AddExpense/>
                 <Typography variant={'h4'} style={{paddingTop: 80}}>
                     Expenses
                 </Typography>

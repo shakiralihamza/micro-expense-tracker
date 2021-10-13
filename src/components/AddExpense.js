@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-const ExpensesMenu = () => {
+const AddExpense = () => {
     const classes = useStyles();
     const {addExpense} = useContext(ExpensesContext);
     const [expenseAmount, setExpenseAmount] = React.useState('');
@@ -90,4 +90,4 @@ const ExpensesMenu = () => {
     );
 };
 
-export default ExpensesMenu;
+export default AddExpense;

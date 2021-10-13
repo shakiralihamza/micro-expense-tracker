@@ -1,7 +1,7 @@
 import React, {useReducer} from "react";
 
 import Expenses from "./components/Expenses";
-import BottomMenu from "./components/BottomMenu";
+import Balance from "./components/Balance";
 import AppReducer from './context/AppReducer';
 import ExpensesContext from "./context/ExpensesContext";
 
@@ -35,7 +35,7 @@ function App() {
     return (
         <ExpensesContext.Provider value={ExpensesContextValues}>
             <Expenses/>
-            <BottomMenu/>
+            <Balance/>
         </ExpensesContext.Provider>
 
     );

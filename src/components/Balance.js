@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     },
 });
 
-const BottomMenu = () => {
+const Balance = () => {
     const classes = useStyles();
     const {expenses} = useContext(ExpensesContext);
     const amounts = expenses.map(expense => expense.amount);
@@ -38,4 +38,4 @@ const BottomMenu = () => {
     );
 };
 
-export default BottomMenu;
+export default Balance;
