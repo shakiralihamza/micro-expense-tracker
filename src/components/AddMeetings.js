@@ -40,14 +40,63 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const AddMeetings = () => {
-    const something = React.useContext(MeetingsMenuContext);
-    const open = something.state.openAddMeeting;
+    const {state} = React.useContext(MeetingsMenuContext);
+    const open = state.openAddMeeting;
     const classes = useStyles();
 
+
+    const attendees = state.attendees;
+    const setAttendees = state.setAttendees;
+    const meetingDate = state.meetingDate;
+    const setMeetingDate = state.setMeetingDate;
+    const meetingStart = state.meetingStart;
+    const setMeetingStart = state.setMeetingStart;
+    const meetingEnd = state.meetingEnd;
+    const setMeetingEnd = state.setMeetingEnd;
+    const purpose = state.purpose;
+    const setPurpose = state.setPurpose;
+    const location = state.location;
+    const setLocation = state.setLocation;
+    const topics = state.topics;
+    const setTopics = state.setTopics;
+    const minutes = state.minutes;
+    const setMinutesList = state.setMinutesList;
+    const setTopicsToggle = state.setTopicsToggle;
+    // const topicsToggle = state.topicsToggle;
+
+
     const handleClose = () => {
-        something.state.setOpenAddMeeting(false);
+        state.setOpenAddMeeting(false);
+        resetFields();
     };
 
+    const handleMinutesAdd = () => {
+        const newMinutes = {
+            key: '_' + Math.random().toString(36).substr(2, 9),
+            meetingDate,
+            meetingStart,
+            meetingEnd,
+            purpose,
+            location,
+            attendees,
+            topics
+        };
+
+        setMinutesList([...minutes, newMinutes]);
+        resetFields();
+        handleClose();
+    }
+
+    const resetFields = () => {
+        setMeetingDate('2017-05-24');
+        setMeetingStart('12:00');
+        setMeetingEnd('12:00');
+        setPurpose('');
+        setLocation('');
+        setAttendees([]);
+        setTopics([]);
+        setTopicsToggle(false)
+    }
     return (
         <>
             <div>
@@ -78,13 +127,16 @@ const AddMeetings = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={1}>
-                                    <IconButton className={classes.IconButtonStyle} disabled color="inherit" onClick={handleClose} aria-label="add">
-                                        {/*<CloseIcon />*/}
+                                    <IconButton
+                                        className={classes.IconButtonStyle}
+                                        color="inherit"
+                                        onClick={handleMinutesAdd}
+                                        aria-label="add"
+                                    >
                                         <Link
                                             component="button"
                                             variant="body2"
                                             underline={"none"}
-                                            color={'none'}
                                         >
                                             Add
                                         </Link>

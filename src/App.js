@@ -1,24 +1,28 @@
 import React from "react";
 import MenuContext from "./context/MenuContext";
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 // The components:
 import BottomMenu from "./components/BottomMenu";
 import Expenses from "./components/Expenses";
-import Meetings from "./components/Meetings";
-import Reminders from "./components/Reminders";
 
 
 function TheMainApp() {
-    const something = React.useContext(MenuContext);
-    const currentMenu = something.values.currentMenu;
 
     return (
     <>
-        {currentMenu === 'expenses' ? <Expenses/> : null}
-        {currentMenu === 'meetings' ? <Meetings/> : null}
-        {currentMenu === 'reminders' ? <Reminders/> : null}
-        <BottomMenu/>
+        <Router>
+            <Switch>
+                <Route path={'/'}>
+                    <Expenses/>
+                </Route>
+            </Switch>
+            <BottomMenu/>
+        </Router>
     </>
     );
 }

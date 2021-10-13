@@ -37,7 +37,7 @@ const AddTopic = () => {
     const topicsToggle = state.topicsToggle;
     const topics = state.topics;
     const setTopics = state.setTopics;
-    console.log(topicsToggle);
+    // console.log(topicsToggle);
 
     const [topicTitle, setTopicTitle] = React.useState('');
 

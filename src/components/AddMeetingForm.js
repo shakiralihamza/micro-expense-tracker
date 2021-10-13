@@ -62,14 +62,22 @@ const AddMeetingForm = () => {
     const {state} = React.useContext(MeetingsMenuContext);
     const attendees = state.attendees;
     const setAttendees = state.setAttendees;
-    // const topics = state.topics;
-    // const setTopics = state.setTopics;
     const topicsToggle = state.topicsToggle;
     const setTopicsToggle = state.setTopicsToggle;
+    const meetingDate = state.meetingDate;
+    const meetingStart = state.meetingStart;
+    const meetingEnd = state.meetingEnd;
+    const setMeetingDate = state.setMeetingDate;
+    const setMeetingStart = state.setMeetingStart;
+    const setMeetingEnd = state.setMeetingEnd;
+    const purpose = state.purpose;
+    const location = state.location;
+    const setPurpose = state.setPurpose;
+    const setLocation = state.setLocation;
 
-    const [meetingDate, setMeetingDate] = React.useState('2017-05-24');
-    const [meetingStart, setMeetingStart] = React.useState('12:00');
-    const [meetingEnd, setMeetingEnd] = React.useState('12:00');
+    // const [meetingDate, setMeetingDate] = React.useState('2017-05-24');
+    // const [meetingStart, setMeetingStart] = React.useState('12:00');
+    // const [meetingEnd, setMeetingEnd] = React.useState('12:00');
     const [type, setType] = React.useState('meeting');
     const [viewAttendeeInfo, setViewAttendeeInfo] = React.useState([
         { key: '#', title: 'Mr.', name: '#', company: '#', phone: '#', email: '#', designation: '#' }
@@ -99,6 +107,12 @@ const AddMeetingForm = () => {
     }
     const handleEnd = (event) => {
         setMeetingEnd(event.target.value);
+    }
+    const handlePurpose = (event) => {
+        setPurpose(event.target.value);
+    }
+    const handleLocation = (event) => {
+        setLocation(event.target.value);
     }
     return (
         <>
@@ -199,10 +213,10 @@ const AddMeetingForm = () => {
             </Accordion>
             <br/>
             <div>
-                <TextField size={'small'} fullWidth id="outlined-basic" label="Purpose" variant="outlined" />
+                <TextField onChange={handlePurpose} value={purpose} size={'small'} fullWidth id="outlined-basic" label="Purpose" variant="outlined" />
                 <br/>
                 <br/>
-                <TextField size={'small'} fullWidth id="outlined-basic" label="Location" variant="outlined" />
+                <TextField onChange={handleLocation} value={location} size={'small'} fullWidth id="outlined-basic" label="Location" variant="outlined" />
             </div>
             <br/>
             <Accordion>
