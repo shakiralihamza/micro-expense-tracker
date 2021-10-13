@@ -1,65 +1,62 @@
 import React, {useContext} from 'react';
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
-import {ListItemSecondaryAction} from "@material-ui/core";
+import ExpensesContext from "../context/ExpensesContext";
+import {Divider, ListItem, ListItemSecondaryAction, ListItemText, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MeetingsMenuContext from "../context/MeetingsMenuContext";
-
-
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const ExpensesList = () => {
-    const {state} = useContext(MeetingsMenuContext);
-    const minutes = state.minutes;
-    const setMinutesList = state.setMinutesList;
-
-    const MinutesListLength = minutes.length;
-
-    const handleDeleteMinute = (minuteToDelete) => {
-        setMinutesList((theMinutes) => theMinutes.filter((minute) => minute.key !== minuteToDelete));
+    const {expenses, deleteExpense} = useContext(ExpensesContext);
+    const ExpensesLength = expenses.length;
+    const handleDeleteExpense = (expenseToDelete) => {
+        deleteExpense(expenseToDelete);
     }
-
     return (
         <>
-            {MinutesListLength
+            {ExpensesLength > 0
                 ?
-                minutes.map((data) => {
-                return (
-                    <>
-                        <ListItem alignItems="flex-start">
-                            <ListItemText
-                                primary={data.purpose}
-                                secondary={
-                                    <React.Fragment>
-                                        <Typography
-                                            component="span"
-                                            variant="body2"
-                                            style={{display:'inline'}}
-                                            color="textSecondary"
-                                        >
-                                            Expense/Income
-                                        </Typography>
-                                        {` — $${577}`}
-                                    </React.Fragment>
-                                }
-                            />
-                            <ListItemSecondaryAction >
-                                <IconButton edge="end" aria-label="delete">
-                                    <DeleteIcon onClick={() => handleDeleteMinute(data.key)} />
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    </>
-                );
-            })
+                expenses.map((expense, index) => {
+                    return (
+                        <>
+                            <ListItem alignItems="flex-start">
+                                <ListItemText
+                                    primary={expense.title}
+                                    secondary={
+                                        <>
+                                            <Typography
+                                                component="span"
+                                                variant="body2"
+                                                style={{display: 'inline'}}
+                                                color="textSecondary"
+                                            >
+                                                {(expense.amount >= 0) ?
+                                                    <span style={{color:'#55a910'}}>Income</span>
+                                                    :
+                                                    <span style={{color:'#DB0044'}}>Expense</span>
+                                                }
+                                            </Typography>
+                                            {` — ${(expense.amount < 0) ? '-':''}$${Math.abs(expense.amount)}`}
+                                        </>
+                                    }
+                                />
+                                <ListItemSecondaryAction>
+                                    <IconButton edge="end" aria-label="delete" color={"primary"}>
+                                        <DeleteIcon onClick={() => handleDeleteExpense(index)}/>
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                                <Divider variant={"middle"} />
+                        </>
+                    );
+                })
                 :
-                <ListItem alignItems="flex-start">
-                    <ListItemText
-                        primary={"No Expenses added yet"}
-                    />
-                </ListItem>
-                }
+                <>
+                    <ListItem alignItems="flex-start">
+                        <ListItemText
+                            primary={"No Expenses added yet"}
+                        />
+                    </ListItem>
+                </>
+            }
         </>
     );
 };

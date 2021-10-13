@@ -1,51 +1,44 @@
-import React from "react";
-import MenuContext from "./context/MenuContext";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import React, {useReducer} from "react";
 
-// The components:
-import BottomMenu from "./components/BottomMenu";
 import Expenses from "./components/Expenses";
+import BottomMenu from "./components/BottomMenu";
+import AppReducer from './context/AppReducer';
+import ExpensesContext from "./context/ExpensesContext";
 
-
-function TheMainApp() {
-
-    return (
-    <>
-        <Router>
-            <Switch>
-                <Route path={'/'}>
-                    <Expenses/>
-                </Route>
-            </Switch>
-            <BottomMenu/>
-        </Router>
-    </>
-    );
+const initialState = {
+    expenses: []
 }
 
 function App() {
-    const [menu, setMenu] = React.useState('meetings');
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    const MenuContextValues = {
-        state: {
-            menu,
-            setMenu
-        },
-        values: {
-            currentMenu: menu
-        }
+    // Actions
+    function deleteExpense(index) {
+        dispatch({
+            type: 'DELETE_EXPENSE',
+            payload: index
+        });
     }
-  return (
-      <>
-          <MenuContext.Provider value={MenuContextValues}>
-              <TheMainApp/>
-          </MenuContext.Provider>
-      </>
-  );
+
+    function addExpense(expense) {
+        dispatch({
+            type: 'ADD_EXPENSE',
+            payload: expense
+        });
+    }
+
+    const ExpensesContextValues = {
+        expenses: state.expenses,
+        addExpense,
+        deleteExpense
+    }
+    return (
+        <ExpensesContext.Provider value={ExpensesContextValues}>
+            <Expenses/>
+            <BottomMenu/>
+        </ExpensesContext.Provider>
+
+    );
 }
 
 export default App;

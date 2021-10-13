@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import {CssBaseline, Grid, InputAdornment, InputLabel, OutlinedInput, TextField} from "@material-ui/core";
@@ -6,11 +6,11 @@ import AddIcon from '@material-ui/icons/Add';
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
-import {number} from "prop-types";
+import ExpensesContext from "../context/ExpensesContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     AppBarStyle: {
-        marginTop: '15px',
+        paddingTop: '15px',
         backgroundColor: 'rgba(255,255,255,0.92)',
         boxShadow: 'none',
         color: "black"
@@ -18,16 +18,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const MeetingsMenu = () => {
+const ExpensesMenu = () => {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        amount: '',
-    });
+    const {addExpense} = useContext(ExpensesContext);
+    const [expenseAmount, setExpenseAmount] = React.useState('');
+    const [expenseTitle, setExpenseTitle] = React.useState('');
 
-    const handleChange = (prop) => (event) => {
-        setValues({...values, [prop]: event.target.value});
+    const handleAmountChange = (e) => {
+        setExpenseAmount(e.target.value.match(/-?[0-9]+(\.[0-9]+)?/g, ''));
+
+    };
+    const handleTitleChange = (e) => {
+        setExpenseTitle(e.target.value);
     };
 
+    const handleAddExpense = () => {
+        const newExpense = {
+            title: expenseTitle,
+            amount: Number(expenseAmount)
+        }
+        // state.setExpenses([...state.expenses, newExpense])
+        addExpense(newExpense);
+        setExpenseAmount('');
+        setExpenseTitle('')
+    }
     return (
         <>
             <CssBaseline/>
@@ -42,6 +56,8 @@ const MeetingsMenu = () => {
                         <Grid item>
                             <TextField
                                 fullWidth
+                                value={expenseTitle}
+                                onChange={(e) => handleTitleChange(e)}
                                 label="Title"
                                 size={"small"}
                                 InputLabelProps={{
@@ -55,14 +71,14 @@ const MeetingsMenu = () => {
                                 <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
-                                    value={values.amount}
-                                    onChange={handleChange('amount')}
+                                    value={expenseAmount}
+                                    onChange={(e) => handleAmountChange(e)}
                                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                     labelWidth={60}
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item>
+                        <Grid item onClick={handleAddExpense}>
                             <IconButton color={"primary"}>
                                 <AddIcon/>
                             </IconButton>
@@ -74,4 +90,4 @@ const MeetingsMenu = () => {
     );
 };
 
-export default MeetingsMenu;
+export default ExpensesMenu;
