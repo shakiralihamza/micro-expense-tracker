@@ -32,7 +32,7 @@ jobs:
         cmd: install # will run `yarn install` command
         
     - name: Give Permissions
-      run: mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
+      run: sudo mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
       
     - name: Build React App
       run: yarn build
