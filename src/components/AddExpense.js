@@ -49,7 +49,7 @@ const AddExpense = () => {
                     <Grid
                         container
                         direction={'row'}
-                        justify="space-evenly"
+                        justify="space-between"
                         alignItems="center"
                     >
                         <Grid item>
