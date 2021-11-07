@@ -1,32 +1,19 @@
 import React, {useContext} from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import AppBar from '@material-ui/core/AppBar';
-import {CssBaseline, Grid, InputAdornment, InputLabel, OutlinedInput, TextField} from "@material-ui/core";
+import {Box, Grid, InputAdornment, InputLabel, OutlinedInput, TextField} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
 import ExpensesContext from "../context/ExpensesContext";
 
-const useStyles = makeStyles(() => ({
-    AppBarStyle: {
-        paddingTop: '15px',
-        backgroundColor: 'rgba(255,255,255,0.92)',
-        boxShadow: 'none',
-        color: "black"
-    }
-}));
-
 
 const AddExpense = () => {
-    const classes = useStyles();
     const {addExpense} = useContext(ExpensesContext);
     const [expenseAmount, setExpenseAmount] = React.useState('');
     const [expenseTitle, setExpenseTitle] = React.useState('');
 
     const handleAmountChange = (e) => {
         setExpenseAmount(e.target.value.match(/-?[0-9]+(\.[0-9]+)?/g, ''));
-
     };
     const handleTitleChange = (e) => {
         setExpenseTitle(e.target.value);
@@ -43,16 +30,23 @@ const AddExpense = () => {
     }
     return (
         <>
-            <CssBaseline/>
-            <AppBar className={classes.AppBarStyle}>
+            <Box style={{
+                width: '100%',
+                backgroundColor: 'white',
+                opacity: '0.9',
+                padding:'20px 0 20px 0',
+                position: 'fixed',
+                zIndex: 99
+            }}>
                 <Container maxWidth={"sm"}>
                     <Grid
                         container
-                        direction={'row'}
-                        justify="space-between"
+                        // direction={'column'}
+                        justify="center"
                         alignItems="center"
+                        spacing={1}
                     >
-                        <Grid item>
+                        <Grid item xs>
                             <TextField
                                 fullWidth
                                 value={expenseTitle}
@@ -65,7 +59,7 @@ const AddExpense = () => {
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs>
                             <FormControl size={"small"} fullWidth variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                                 <OutlinedInput
@@ -77,14 +71,14 @@ const AddExpense = () => {
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item onClick={handleAddExpense}>
+                        <Grid item xs={"auto"} onClick={handleAddExpense}>
                             <IconButton color={"primary"}>
                                 <AddIcon/>
                             </IconButton>
                         </Grid>
                     </Grid>
                 </Container>
-            </AppBar>
+            </Box>
         </>
     );
 };

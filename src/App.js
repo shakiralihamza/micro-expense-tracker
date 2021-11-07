@@ -4,6 +4,7 @@ import Expenses from "./components/Expenses";
 import Balance from "./components/Balance";
 import AppReducer from './context/AppReducer';
 import ExpensesContext from "./context/ExpensesContext";
+import {CssBaseline} from "@material-ui/core";
 
 const initialState = {
     expenses: []
@@ -34,6 +35,7 @@ function App() {
     }
     return (
         <ExpensesContext.Provider value={ExpensesContextValues}>
+            <CssBaseline/>
             <Expenses/>
             <Balance/>
         </ExpensesContext.Provider>
