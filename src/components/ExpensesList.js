@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
 import ExpensesContext from "../context/ExpensesContext";
-import {Divider, ListItem, ListItemSecondaryAction, ListItemText, Typography} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from '@material-ui/icons/Delete';
+import {Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ExpensesList = () => {
     const {expenses, deleteExpense} = useContext(ExpensesContext);

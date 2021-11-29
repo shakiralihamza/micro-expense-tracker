@@ -1,10 +1,17 @@
 import React, {useContext} from 'react';
-import {Box, Grid, InputAdornment, InputLabel, OutlinedInput, TextField} from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
-import FormControl from "@material-ui/core/FormControl";
-import Container from "@material-ui/core/Container";
-import IconButton from "@material-ui/core/IconButton";
+import AddIcon from '@mui/icons-material/Add';
 import ExpensesContext from "../context/ExpensesContext";
+import {
+    Box,
+    Container,
+    FormControl,
+    Grid,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    TextField
+} from "@mui/material";
 
 
 const AddExpense = () => {

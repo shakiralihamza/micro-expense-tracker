@@ -1,9 +1,8 @@
 import React from 'react';
-import Typography from "@material-ui/core/Typography";
-import {Container} from "@material-ui/core";
-import List from '@material-ui/core/List';
 import AddExpense from "./AddExpense";
 import ExpensesList from "./ExpensesList";
+import {Container, Typography} from "@mui/material";
+import {List} from "@mui/icons-material";
 
 const Expenses = () => {
     return (
