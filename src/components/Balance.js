@@ -1,13 +1,11 @@
-import React, {useContext} from 'react';
-import ExpensesContext from "../context/ExpensesContext";
+import React from 'react';
+// import ExpensesContext from "../context/ExpensesContext";
 import {Grid, IconButton, Paper, Stack, Typography} from "@mui/material";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const backgroundGreen = '#e0fbe9';
-const textGreen = '#45e576';
 const backgroundYellow = '#fbf0d9';
-const textYellow = '#f69910';
 
 const ThePaper = ({type, data}) => (
     <Paper elevation={0} sx={{padding: '10px 10px', width: '140px', borderRadius: 5}}>
@@ -16,7 +14,7 @@ const ThePaper = ({type, data}) => (
                 <IconButton
                     sx={{
                         backgroundColor: type === 'Income' ? backgroundGreen : backgroundYellow,
-                        color: type === 'Income' ? textGreen : textYellow,
+                        color: type === 'Income' ? 'success.main' : 'warning.main',
                         '&: hover': {
                             backgroundColor: type === 'Income' ? backgroundGreen : backgroundYellow,
                             cursor: 'default'
@@ -41,7 +39,7 @@ const ThePaper = ({type, data}) => (
                         sx={{
                             lineHeight: 1.1,
                             fontWeight: '600',
-                            color: type==='Income'?textGreen:textYellow,
+                            color: type==='Income'?'success.main':'warning.main',
                             fontSize: 17
                         }}
                     >
@@ -56,10 +54,10 @@ const ThePaper = ({type, data}) => (
     </Paper>
 );
 const Balance = () => {
-    const {expenses} = useContext(ExpensesContext);
-    const amounts = expenses.map(expense => expense.amount);
+    // const {expenses} = useContext(ExpensesContext);
+    // const amounts = expenses.map(expense => expense.amount);
 
-    const total = amounts.reduce((acc, item) => (acc += item), 0);
+    // const total = amounts.reduce((acc, item) => (acc += item), 0);
 
     return (
         <Grid

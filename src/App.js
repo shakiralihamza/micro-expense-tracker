@@ -4,11 +4,23 @@ import Expenses from "./components/Expenses";
 import Balance from "./components/Balance";
 import AppReducer from './context/AppReducer';
 import ExpensesContext from "./context/ExpensesContext";
-import {Container, CssBaseline} from "@mui/material";
+import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import Header from "./components/Header";
 
+const theme = createTheme({
+    palette:{
+        success: {
+            main: '#45e576'
+        },
+        warning: {
+            main: '#f69910'
+        }
+    }
+});
+
 const initialState = {
-    expenses: []
+    expenses: [],
+    drawerOpen: false
 }
 
 function App() {
@@ -29,21 +41,31 @@ function App() {
         });
     }
 
+    function toggleDrawer() {
+        dispatch({
+            type: 'TOGGLE_DRAWER',
+            payload: state.drawerOpen
+        });
+    }
+
     const ExpensesContextValues = {
         expenses: state.expenses,
+        drawerOpen: state.drawerOpen,
         addExpense,
-        deleteExpense
+        deleteExpense,
+        toggleDrawer
     }
     return (
-        <ExpensesContext.Provider value={ExpensesContextValues}>
-            <Container maxWidth={"sm"}>
-                <CssBaseline/>
-                <Header/>
-                <Balance/>
-                <Expenses/>
-            </Container>
-        </ExpensesContext.Provider>
-
+        <ThemeProvider theme={theme}>
+            <ExpensesContext.Provider value={ExpensesContextValues}>
+                <Container maxWidth={"sm"}>
+                    <CssBaseline/>
+                    <Header/>
+                    <Balance/>
+                    <Expenses/>
+                </Container>
+            </ExpensesContext.Provider>
+        </ThemeProvider>
     );
 }
 

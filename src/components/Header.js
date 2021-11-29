@@ -1,8 +1,10 @@
-import React from 'react';
-import {Container, Fab, Grid, IconButton, Typography} from "@mui/material";
+import React, {useContext} from 'react';
+import {Fab, Grid, Typography} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ExpensesContext from "../context/ExpensesContext";
 
 function Header() {
+    const {toggleDrawer} = useContext(ExpensesContext);
     return (
         <Grid
             sx={{height: '100px'}}
@@ -14,7 +16,7 @@ function Header() {
                 <Typography variant={"h4"} sx={{fontWeight: '500'}}>Daily Transactions</Typography>
             </Grid>
             <Grid item>
-                <Fab size={"small"} color="primary" aria-label="add" disableRipple>
+                <Fab onClick={toggleDrawer} size={"small"} color="primary" aria-label="add" disableRipple>
                     <AddIcon/>
                 </Fab>
             </Grid>

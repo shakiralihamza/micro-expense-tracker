@@ -10,6 +10,11 @@ export default (state, action) => {
                 ...state,
                 expenses: [action.payload, ...state.expenses]
             }
+        case 'TOGGLE_DRAWER':
+            return {
+                ...state,
+                drawerOpen: !action.payload
+            }
         default:
             return state;
     }
