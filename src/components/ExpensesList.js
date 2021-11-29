@@ -1,6 +1,14 @@
 import React, {useContext} from 'react';
 import ExpensesContext from "../context/ExpensesContext";
-import {Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography} from "@mui/material";
+import {
+    Box,
+    IconButton,
+    ListItem,
+    ListItemSecondaryAction,
+    ListItemText,
+    Paper,
+    Typography
+} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const ExpensesList = () => {
@@ -11,39 +19,42 @@ const ExpensesList = () => {
     }
     return (
         <>
-             {ExpensesLength > 0
+            {ExpensesLength > 0
                 ?
                 expenses.map((expense, index) => {
                     return (
                         <>
-                            <ListItem alignItems="flex-start">
-                                <ListItemText
-                                    primary={expense.title}
-                                    secondary={
-                                        <>
-                                            <Typography
-                                                component="span"
-                                                variant="body2"
-                                                style={{display: 'inline'}}
-                                                color="textSecondary"
-                                            >
-                                                {(expense.amount >= 0) ?
-                                                    <span style={{color:'#55a910'}}>Income</span>
-                                                    :
-                                                    <span style={{color:'#DB0044'}}>Expense</span>
-                                                }
-                                            </Typography>
-                                            {` — ${(expense.amount < 0) ? '-':''}$${Math.abs(expense.amount)}`}
-                                        </>
-                                    }
-                                />
-                                <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="delete" color={"primary"}>
-                                        <DeleteIcon onClick={() => handleDeleteExpense(index)}/>
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                                <Divider variant={"middle"} />
+                            <Paper elevation={0} sx={{margin: '0 0 20px', borderRadius: 5}}>
+                                <ListItem alignItems="flex-start">
+                                    <ListItemText
+                                        primary={
+                                            <Typography sx={{fontWeight: '500', fontSize:18}}>{expense.title}</Typography>
+                                        }
+                                        secondary={
+                                            <>
+                                                <Typography
+                                                    component="span"
+                                                    variant="body2"
+                                                    sx={{display: 'inline'}}
+                                                    color="textSecondary"
+                                                >
+                                                    {(expense.amount >= 0) ?
+                                                        <Box sx={{color: 'success.main'}}>Income</Box>
+                                                        :
+                                                        <Box sx={{color: 'warning.dark'}}>Expense</Box>
+                                                    }
+                                                </Typography>
+                                                {` — ${(expense.amount < 0) ? '-' : ''}$${Math.abs(expense.amount)}`}
+                                            </>
+                                        }
+                                    />
+                                    <ListItemSecondaryAction>
+                                        <IconButton edge="end" aria-label="delete" color={"primary"}>
+                                            <DeleteIcon sx={{color: 'error.light'}} onClick={() => handleDeleteExpense(index)}/>
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            </Paper>
                         </>
                     );
                 })

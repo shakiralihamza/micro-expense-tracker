@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import ExpensesContext from "../context/ExpensesContext";
-import {Grid, IconButton, Paper, Stack, Typography} from "@mui/material";
+import {Grid, IconButton, Paper, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
@@ -54,6 +54,9 @@ const ThePaper = ({type, data}) => (
     </Paper>
 );
 const Balance = () => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
     const {expenses} = useContext(ExpensesContext);
     const amounts = expenses.map(expense => expense.amount);
     // const total = amounts.reduce((acc, item) => (acc += item), 0);
@@ -91,37 +94,33 @@ const Balance = () => {
             container
             alignItems={"center"}
             justify={"center"}
-            sx={{padding: '20px 0'}}
+            sx={{padding: '0 0 20px'}}
             spacing={2}
         >
-            <Grid item xs={'auto'}>
+            <Grid item xs={'auto'} order={isSmallScreen?1:0}>
                 <ThePaper type={'Income'} data={positivePercentage}/>
             </Grid>
-            <Grid item xs>
+            <Grid item xs order={isSmallScreen?2:1}>
                 <ThePaper type={'Expense'} data={negativePercentage}/>
             </Grid>
-            <Grid item xs={'auto'}>
+            <Grid item xs={12} sm={'auto'} order={isSmallScreen?0:2}>
                 <Stack direction={"column"}>
                     <Typography
                         component={'span'}
+                        textAlign={isSmallScreen?"center":null}
                         sx={{
                             lineHeight: 1.1,
                             fontWeight: '600',
-                            fontSize: 17
+                            fontSize: isSmallScreen?24:20
                         }}
                     >
                         {totalAmount < 0 ? '-' : ''}${Math.abs(totalAmount)}
                     </Typography>
-                    <Typography textAlign={"right"} fontSize={14} sx={{lineHeight: 1.1}}>
+                    <Typography textAlign={isSmallScreen?"center":null} fontSize={14} sx={{lineHeight: 1.1}}>
                         Balance
                     </Typography>
                 </Stack>
             </Grid>
-            {/*<Grid item>
-                <Typography variant={'h5'}>
-                    BALANCE: {total < 0 ? '-' : ''}${Math.abs(total)}
-                </Typography>
-            </Grid>*/}
         </Grid>
     );
 };
