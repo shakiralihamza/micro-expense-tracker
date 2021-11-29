@@ -37,7 +37,7 @@ const AddExpense = () => {
     }
     return (
         <>
-            <Box style={{
+            {/*<Box style={{
                 width: '100%',
                 backgroundColor: 'white',
                 opacity: '0.9',
@@ -85,7 +85,7 @@ const AddExpense = () => {
                         </Grid>
                     </Grid>
                 </Container>
-            </Box>
+            </Box>*/}
         </>
     );
 };

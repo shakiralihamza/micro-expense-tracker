@@ -4,7 +4,8 @@ import Expenses from "./components/Expenses";
 import Balance from "./components/Balance";
 import AppReducer from './context/AppReducer';
 import ExpensesContext from "./context/ExpensesContext";
-import {CssBaseline} from "@mui/material";
+import {Container, CssBaseline} from "@mui/material";
+import Header from "./components/Header";
 
 const initialState = {
     expenses: []
@@ -35,9 +36,12 @@ function App() {
     }
     return (
         <ExpensesContext.Provider value={ExpensesContextValues}>
-            <CssBaseline/>
-            <Expenses/>
-            <Balance/>
+            <Container maxWidth={"sm"}>
+                <CssBaseline/>
+                <Header/>
+                <Balance/>
+                <Expenses/>
+            </Container>
         </ExpensesContext.Provider>
 
     );
