@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import {useContext, useState} from "react";
 import ExpensesContext from "../context/ExpensesContext";
-import {InputAdornment, Stack, TextField, ToggleButton, ToggleButtonGroup, useTheme} from "@mui/material";
+import {Grid, InputAdornment, Stack, TextField, ToggleButton, ToggleButtonGroup, useTheme} from "@mui/material";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -35,6 +35,7 @@ const TheTextField = ({icon, placeholder, value, setValue, type}) => {
             setValue(e.target.value)
         }
     }
+
     return (
         <TextField
             color={'primary'}
@@ -87,9 +88,9 @@ const AddExpense = () => {
             <Global
                 styles={{
                     '.MuiDrawer-root > .MuiPaper-root': {
-                        height: `calc(60%)`,
+                        height: `auto`,
                         overflow: 'visible',
-                        width: theme.breakpoints.values.sm,
+                        maxWidth: theme.breakpoints.values.sm,
                         margin: 'auto',
                     },
                 }}
@@ -159,14 +160,18 @@ const AddExpense = () => {
                                 Expense
                             </ToggleButton>
                         </ToggleButtonGroup>
-                        <Button
-                            variant="contained" color={'primary'}
-                            startIcon={<AddTaskIcon/>} disableRipple
-                            disabled={amount === '' || desc === ''}
-                            onClick={handleAddExpense}
-                        >
-                            Add
-                        </Button>
+                        <Grid container justifyContent={'center'}>
+                            <Grid item>
+                                <Button
+                                    variant="contained" color={'primary'}
+                                    startIcon={<AddTaskIcon/>} disableRipple
+                                    disabled={amount === '' || desc === ''}
+                                    onClick={handleAddExpense} sx={{width: '130px'}}
+                                >
+                                    Add
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Stack>
                 </Box>
             </SwipeableDrawer>

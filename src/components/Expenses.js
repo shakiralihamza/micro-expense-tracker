@@ -1,15 +1,14 @@
 import React from 'react';
 import AddExpense from "./AddExpense";
 import ExpensesList from "./ExpensesList";
-import {Container, Typography} from "@mui/material";
-import {List} from "@mui/icons-material";
+import {Container, List, Typography} from "@mui/material";
 
 const Expenses = () => {
     return (
         <>
             <AddExpense/>
             <Container maxWidth={"sm"}>
-                <Typography variant={'h4'} style={{paddingTop: 80}}>
+                <Typography variant={'h4'} style={{paddingTop: 10}}>
                     Expenses
                 </Typography>
                 <List>

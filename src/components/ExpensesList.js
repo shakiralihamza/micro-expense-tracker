@@ -11,7 +11,7 @@ const ExpensesList = () => {
     }
     return (
         <>
-            {ExpensesLength > 0
+             {ExpensesLength > 0
                 ?
                 expenses.map((expense, index) => {
                     return (
