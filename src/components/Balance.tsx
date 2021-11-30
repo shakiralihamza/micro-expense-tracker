@@ -99,14 +99,14 @@ const Balance = () => {
         <Grid
             container
             alignItems={"center"}
-            justifyContent={"center"}
+            justifyContent={"space-evenly"}
             sx={{padding: '0 0 20px'}}
             spacing={2}
         >
             <Grid item xs={'auto'} order={isSmallScreen ? 1 : 0}>
                 <ThePaper type={'Income'} data={positivePercentage}/>
             </Grid>
-            <Grid item xs order={isSmallScreen ? 2 : 1}>
+            <Grid item xs={'auto'} sm order={isSmallScreen ? 2 : 1}>
                 <ThePaper type={'Expense'} data={negativePercentage}/>
             </Grid>
             <Grid item xs={12} sm={'auto'} order={isSmallScreen ? 0 : 2}>
