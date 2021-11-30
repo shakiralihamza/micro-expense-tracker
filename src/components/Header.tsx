@@ -6,7 +6,7 @@ import ExpensesContext from "../context/ExpensesContext";
 function Header() {
     const {toggleDrawer} = useContext(ExpensesContext);
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <Grid
             sx={{height: '100px'}}

@@ -1,14 +1,15 @@
 import React, {useReducer} from "react";
-
 import Expenses from "./components/Expenses";
 import Balance from "./components/Balance";
 import AppReducer from './context/AppReducer';
 import ExpensesContext from "./context/ExpensesContext";
 import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import Header from "./components/Header";
+// noinspection ES6PreferShortImport
+import {Expense} from "./react-app-env.d";
 
 const theme = createTheme({
-    palette:{
+    palette: {
         success: {
             main: '#45e576'
         },
@@ -18,7 +19,19 @@ const theme = createTheme({
     }
 });
 
-const initialState = {
+interface InitialState {
+    expenses: Expense[]
+    drawerOpen: boolean
+}
+interface ExpensesContextType {
+    expenses: string
+    drawerOpen: boolean
+    addExpense: (expense: Expense) => void
+    deleteExpense: (index: number) => void
+    toggleDrawer: (drawerOpen: boolean) => void
+}
+
+const initialState: InitialState = {
     expenses: [],
     drawerOpen: false
 }
@@ -27,14 +40,14 @@ function App() {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions
-    function deleteExpense(index) {
+    function deleteExpense(index: number) {
         dispatch({
             type: 'DELETE_EXPENSE',
             payload: index
         });
     }
 
-    function addExpense(expense) {
+    function addExpense(expense: Expense) {
         dispatch({
             type: 'ADD_EXPENSE',
             payload: expense
@@ -48,7 +61,7 @@ function App() {
         });
     }
 
-    const ExpensesContextValues = {
+    const ExpensesContextValues: ExpensesContextType = {
         expenses: state.expenses,
         drawerOpen: state.drawerOpen,
         addExpense,

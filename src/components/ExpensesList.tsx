@@ -10,25 +10,27 @@ import {
     Typography
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+// noinspection ES6PreferShortImport
+import {Expense} from "../react-app-env.d";
 
 const ExpensesList = () => {
     const {expenses, deleteExpense} = useContext(ExpensesContext);
-    const ExpensesLength = expenses.length;
-    const handleDeleteExpense = (expenseToDelete) => {
+    const ExpensesLength: number = expenses.length;
+    const handleDeleteExpense = (expenseToDelete: number): void => {
         deleteExpense(expenseToDelete);
     }
     return (
         <>
             {ExpensesLength > 0
                 ?
-                expenses.map((expense, index) => {
+                expenses.map((expense: Expense, index: number) => {
                     return (
                         <>
                             <Paper elevation={0} sx={{margin: '0 0 20px', borderRadius: 5}}>
                                 <ListItem alignItems="flex-start">
                                     <ListItemText
                                         primary={
-                                            <Typography sx={{fontWeight: '500', fontSize:18}}>{expense.title}</Typography>
+                                            <Typography sx={{fontWeight: '500', fontSize:18}}>{expense.desc}</Typography>
                                         }
                                         secondary={
                                             <>

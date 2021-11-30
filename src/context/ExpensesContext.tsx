@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ExpensesContext = React.createContext([]);
+const ExpensesContext = React.createContext<any>([]);
 
 export default ExpensesContext;

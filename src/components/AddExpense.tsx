@@ -8,10 +8,22 @@ import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import {useContext, useState} from "react";
 import ExpensesContext from "../context/ExpensesContext";
-import {Grid, InputAdornment, Stack, TextField, ToggleButton, ToggleButtonGroup, useTheme} from "@mui/material";
+import {
+    Grid,
+    InputAdornment,
+    Stack,
+    SvgIconProps,
+    TextField,
+    ToggleButton,
+    ToggleButtonGroup,
+    useTheme
+} from "@mui/material";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+// noinspection ES6PreferShortImport
+import {Expense} from "../react-app-env.d";
+
 
 const Puller = styled(Box)(({theme}) => ({
     width: 30,
@@ -23,8 +35,16 @@ const Puller = styled(Box)(({theme}) => ({
     left: 'calc(50% - 15px)',
 }));
 
-const TheTextField = ({icon, placeholder, value, setValue, type}) => {
-    const setTheValue = (e) => {
+interface TextFieldProps {
+    icon: React.ReactElement<SvgIconProps>
+    placeholder: string
+    value: string
+    setValue: React.Dispatch<React.SetStateAction<string>>
+    type: string
+}
+
+const TheTextField: React.FC<TextFieldProps> = ({icon, placeholder, value, setValue, type}) => {
+    const setTheValue = (e: any) => {
         if (type === 'number') {
             const re = /^[0-9\b]+$/;
 
@@ -62,18 +82,18 @@ const TheTextField = ({icon, placeholder, value, setValue, type}) => {
 const AddExpense = () => {
     const theme = useTheme();
     const {drawerOpen, toggleDrawer, addExpense} = useContext(ExpensesContext)
-    const [transType, setTransType] = useState('income');
-    const [amount, setAmount] = useState('');
-    const [desc, setDesc] = useState('');
+    const [transType, setTransType] = useState<string>('income');
+    const [amount, setAmount] = useState<string>('');
+    const [desc, setDesc] = useState<string>('');
 
-    const handleTransType = (event, val) => {
+    const handleTransType = (event: any, val: string) => {
         setTransType(val);
     };
 
-    const handleAddExpense = () => {
-        const getAmount = Math.abs(Number(amount))
-        const newExpense = {
-            title: desc,
+    const handleAddExpense = (): void => {
+        const getAmount: number = Math.abs(Number(amount))
+        const newExpense: Expense = {
+            desc,
             amount: transType === 'expense' ? -getAmount : getAmount
         }
         addExpense(newExpense);
@@ -145,6 +165,7 @@ const AddExpense = () => {
                             placeholder={'Description'}
                             value={desc}
                             setValue={setDesc}
+                            type={'text'}
                         />
                         <ToggleButtonGroup
                             value={transType}

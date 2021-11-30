@@ -7,7 +7,6 @@ const Expenses = () => {
     return (
         <>
             <AddExpense/>
-
             <List dense disablePadding>
                 <ExpensesList/>
             </List>
