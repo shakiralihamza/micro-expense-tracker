@@ -1,6 +1,6 @@
 {
-  "short_name": "Micro Expense Tracker",
-  "name": "Created with React amd Material UI",
+  "short_name": "ExpenseTracker",
+  "name": "Micro Expense Tracker",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#45e576",
+  "background_color": "#45e576"
 }
