@@ -87,7 +87,9 @@ const AddExpense = () => {
     const [desc, setDesc] = useState<string>('');
 
     const handleTransType = (event: any, val: string) => {
-        setTransType(val);
+        if (val !== null) {
+            setTransType(val);
+        }
     };
 
     const handleAddExpense = (): void => {
